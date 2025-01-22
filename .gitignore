@@ -1,0 +1,20 @@
+#	Whitelist ignore
+*
+
+#	Git
+!.gitignore
+
+#	Compilation
+!Makefile
+
+#	Directories
+!include
+include/*
+!libft
+libft/*
+!src
+src/*
+
+#	Files
+!include/ft_printf.h
+!src/ft_printf.c
