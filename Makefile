@@ -24,6 +24,7 @@ FILE_SOURCES		=	\
 					$(DIR_SOURCES)/ft_getupphex.c \
 					$(DIR_SOURCES)/ft_printf.c \
 					$(DIR_SOURCES)/ft_tohexstr.c \
+					$(DIR_SOURCES)/ft_varstr.c \
 
 FILE_OBJECTS		=	$(patsubst $(DIR_SOURCES)/%.c, $(DIR_OBJECTS)/%.o, $(FILE_SOURCES))
 FILE_LIBFT			=	$(DIR_LIBFT)/libft.a

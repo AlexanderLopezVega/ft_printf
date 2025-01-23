@@ -6,13 +6,14 @@
 /*   By: alopez-v <alopez-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:19:51 by alopez-v          #+#    #+#             */
-/*   Updated: 2025/01/23 14:41:13 by alopez-v         ###   ########.fr       */
+/*   Updated: 2025/01/23 16:23:14 by alopez-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
+# include <stdarg.h>
 # include <stddef.h>
 
 # define FORMAT_SPECIFIER_CHAR '%'
@@ -27,7 +28,9 @@ char	*ft_getstr(const char *str);
 char	*ft_getudec(const double dec);
 char	*ft_getupphex(const unsigned long long i);
 size_t	ft_mantissalen(const double num);
-void	ft_printf(const char *format, ...);
+int		ft_printf(const char *format, ...);
 char	*ft_tohexstr(const unsigned long long num, const char *hex_dic,
 			const size_t digits);
+char	*ft_varstr(const char *format, va_list args);
+
 #endif

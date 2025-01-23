@@ -6,74 +6,95 @@
 /*   By: alopez-v <alopez-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:25:35 by alopez-v          #+#    #+#             */
-/*   Updated: 2025/01/23 15:26:45 by alopez-v         ###   ########.fr       */
+/*   Updated: 2025/01/23 16:37:49 by alopez-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft.h"
-#include <stdarg.h>
 #include <stdlib.h>
 
-static void	print_lst(void *str)
+static int	ft_trypushnode(t_list **lst, char *str)
+{
+	t_list	*node;
+
+	if (str)
+	{
+		node = ft_lstnew(str);
+		if (node)
+		{
+			ft_lstadd_back(lst, node);
+			return (1);
+		}
+		free(str);
+	}
+	ft_lstclear(lst, &free);
+	return (0);
+}
+
+static int	ft_getvarnodes(const char *format, size_t *j, va_list args,
+		t_list **vars_lst)
+{
+	while (format[*j] == FORMAT_SPECIFIER_CHAR)
+	{
+		++(*j);
+		if (!ft_trypushnode(vars_lst, ft_varstr(&(format[*j]), args)))
+			return (0);
+		++(*j);
+	}
+	return (1);
+}
+
+static int	ft_getnonvarnodes(const char *format, size_t *i, size_t *j,
+		t_list **vars_lst)
+{
+	*i = *j;
+	while (format[*j] != '\0' && format[*j] != FORMAT_SPECIFIER_CHAR)
+		++(*j);
+	if (*i < *j)
+	{
+		if (!ft_trypushnode(vars_lst, ft_substr(format, *i, *j - *i)))
+			return (0);
+		*i = *j;
+	}
+	return (1);
+}
+
+static t_list	*ft_getvars(const char *format, va_list args)
+{
+	size_t	i;
+	size_t	j;
+	t_list	*vars_lst;
+
+	i = 0;
+	j = 0;
+	vars_lst = NULL;
+	while (format[j] != '\0')
+	{
+		if (!ft_getvarnodes(format, &j, args, &vars_lst)
+			|| !ft_getnonvarnodes(format, &i, &j, &vars_lst))
+			return (NULL);
+	}
+	return (vars_lst);
+}
+
+static void	print_vars(void *str)
 {
 	ft_putstr_fd(str, 0);
 }
 
-void	ft_printf(const char *format, ...)
+int	ft_printf(const char *format, ...)
 {
 	va_list	args;
-	size_t	i;
-	size_t	j;
-	t_list	*str_lst;
-	char	*str;
-	char	c;
+	t_list	*vars_strs;
 
 	va_start(args, format);
-	i = 0;
-	j = 0;
-	str_lst = NULL;
-	c = format[j];
-	while (c != '\0')
+	vars_strs = ft_getvars(format, args);
+	if (vars_strs)
 	{
-		if (c == '%')
-		{
-			if (i < j)
-				ft_lstadd_back(&str_lst, ft_lstnew(ft_substr(format, i, j
-							- i)));
-			++j;
-			c = format[j];
-			str = NULL;
-			if (c == 'c')
-				str = ft_getchar(va_arg(args, int));
-			else if (c == 's')
-				str = ft_getstr(va_arg(args, char *));
-			else if (c == 'p')
-				str = ft_getaddr(va_arg(args, void *));
-			else if (c == 'd')
-				str = ft_getdec(va_arg(args, double));
-			else if (c == 'i')
-				str = ft_getint(va_arg(args, int));
-			else if (c == 'u')
-				str = ft_getdec(va_arg(args, double));
-			else if (c == 'x')
-				str = ft_getlowhex(va_arg(args, int));
-			else if (c == 'X')
-				str = ft_getupphex(va_arg(args, int));
-			else if (c == '%')
-				str = ft_getchar('%');
-			ft_lstadd_back(&str_lst, ft_lstnew(str));
-			i = j + 1;
-		}
-		else if (i == j)
-			i = j;
-		++j;
-		c = format[j];
+		ft_lstiter(vars_strs, &print_vars);
+		ft_lstclear(&vars_strs, &free);
 	}
-	if (i < j)
-		ft_lstadd_back(&str_lst, ft_lstnew(ft_substr(format, i, j - i)));
 	va_end(args);
-	if (str_lst)
-		ft_lstiter(str_lst, &print_lst);
-	ft_lstclear(&str_lst, &free);
+	return (0);
 }

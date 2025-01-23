@@ -17,6 +17,11 @@ src/*
 
 #	Files
 !include/ft_printf.h
+
+!libft/ft_*.c
+!libft/libft.h
+!libft/Makefile
+
 !src/ft_declen.c
 !src/ft_getaddr.c
 !src/ft_getchar.c
@@ -28,3 +33,4 @@ src/*
 !src/ft_getupphex.c
 !src/ft_printf.c
 !src/ft_tohexstr.c
+!src/ft_varstr.c
