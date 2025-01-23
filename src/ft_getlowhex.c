@@ -6,7 +6,7 @@
 /*   By: alopez-v <alopez-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 11:38:50 by alopez-v          #+#    #+#             */
-/*   Updated: 2025/01/23 12:24:22 by alopez-v         ###   ########.fr       */
+/*   Updated: 2025/01/23 15:25:26 by alopez-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,5 @@
 
 char	*ft_getlowhex(const unsigned long long i)
 {
-		return (ft_tohexstr(i, "0123456789abcdef", 0));
-
+	return (ft_tohexstr(i, "0123456789abcdef", 0));
 }

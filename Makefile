@@ -51,13 +51,9 @@ all:	$(TARGET)
 
 clean:
 	rm -rf $(FILE_OBJECTS)
-	cd $(DIR_LIBFT)
-	$(MAKE) -C $(DIR_LIBFT) clean
 
 fclean: clean
 	rm -rf $(TARGET)
-	cd $(DIR_LIBFT)
-	$(MAKE) -C $(DIR_LIBFT) fclean
 
 re:	fclean all
 

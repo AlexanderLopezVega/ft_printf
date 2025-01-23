@@ -6,7 +6,7 @@
 /*   By: alopez-v <alopez-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 12:12:31 by alopez-v          #+#    #+#             */
-/*   Updated: 2025/01/23 13:54:03 by alopez-v         ###   ########.fr       */
+/*   Updated: 2025/01/23 15:25:56 by alopez-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,16 @@ static void	ft_fillhexstr(char *str, const size_t len, unsigned long long num,
 		{
 			str[2 + len - i] = hex_dic[num % 16];
 			num /= 16;
-		}		++i;
+		}
+		++i;
 	}
 }
 
 char	*ft_tohexstr(const unsigned long long num, const char *hex_dic,
 		const size_t digits)
 {
-	size_t len;
-	char *str;
+	size_t	len;
+	char	*str;
 
 	len = ft_countdigits(num);
 	if (len < digits)

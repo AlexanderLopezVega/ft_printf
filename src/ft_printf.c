@@ -6,7 +6,7 @@
 /*   By: alopez-v <alopez-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:25:35 by alopez-v          #+#    #+#             */
-/*   Updated: 2025/01/23 15:18:40 by alopez-v         ###   ########.fr       */
+/*   Updated: 2025/01/23 15:26:45 by alopez-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,6 @@
 static void	print_lst(void *str)
 {
 	ft_putstr_fd(str, 0);
-}
-
-static void	del_lst(void *str)
-{
-	free(str);
 }
 
 void	ft_printf(const char *format, ...)
@@ -80,5 +75,5 @@ void	ft_printf(const char *format, ...)
 	va_end(args);
 	if (str_lst)
 		ft_lstiter(str_lst, &print_lst);
-	ft_lstclear(&str_lst, &del_lst);
+	ft_lstclear(&str_lst, &free);
 }

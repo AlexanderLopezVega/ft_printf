@@ -6,7 +6,7 @@
 /*   By: alopez-v <alopez-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 11:38:39 by alopez-v          #+#    #+#             */
-/*   Updated: 2025/01/23 14:59:09 by alopez-v         ###   ########.fr       */
+/*   Updated: 2025/01/23 15:25:13 by alopez-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	ft_getmantissa(const double dec, char *str)
 		mantissa *= 10;
 		str[i] = (int)mantissa % 10 + '0';
 		if ((int)mantissa < 0)
-			str[i] =(-(int)mantissa) % 10 + '0';
+			str[i] = (-(int)mantissa) % 10 + '0';
 		++i;
 	}
 }
