@@ -6,59 +6,13 @@
 /*   By: alopez-v <alopez-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:25:35 by alopez-v          #+#    #+#             */
-/*   Updated: 2025/01/23 16:37:49 by alopez-v         ###   ########.fr       */
+/*   Updated: 2025/01/23 16:42:57 by alopez-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft.h"
 #include <stdlib.h>
-
-static int	ft_trypushnode(t_list **lst, char *str)
-{
-	t_list	*node;
-
-	if (str)
-	{
-		node = ft_lstnew(str);
-		if (node)
-		{
-			ft_lstadd_back(lst, node);
-			return (1);
-		}
-		free(str);
-	}
-	ft_lstclear(lst, &free);
-	return (0);
-}
-
-static int	ft_getvarnodes(const char *format, size_t *j, va_list args,
-		t_list **vars_lst)
-{
-	while (format[*j] == FORMAT_SPECIFIER_CHAR)
-	{
-		++(*j);
-		if (!ft_trypushnode(vars_lst, ft_varstr(&(format[*j]), args)))
-			return (0);
-		++(*j);
-	}
-	return (1);
-}
-
-static int	ft_getnonvarnodes(const char *format, size_t *i, size_t *j,
-		t_list **vars_lst)
-{
-	*i = *j;
-	while (format[*j] != '\0' && format[*j] != FORMAT_SPECIFIER_CHAR)
-		++(*j);
-	if (*i < *j)
-	{
-		if (!ft_trypushnode(vars_lst, ft_substr(format, *i, *j - *i)))
-			return (0);
-		*i = *j;
-	}
-	return (1);
-}
 
 static t_list	*ft_getvars(const char *format, va_list args)
 {
@@ -71,8 +25,8 @@ static t_list	*ft_getvars(const char *format, va_list args)
 	vars_lst = NULL;
 	while (format[j] != '\0')
 	{
-		if (!ft_getvarnodes(format, &j, args, &vars_lst)
-			|| !ft_getnonvarnodes(format, &i, &j, &vars_lst))
+		if (!ft_getnodes_var(format, &j, args, &vars_lst)
+			|| !ft_getnodes(format, &i, &j, &vars_lst))
 			return (NULL);
 	}
 	return (vars_lst);

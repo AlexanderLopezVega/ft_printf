@@ -19,9 +19,12 @@ FILE_SOURCES		=	\
 					$(DIR_SOURCES)/ft_getdec.c \
 					$(DIR_SOURCES)/ft_getint.c \
 					$(DIR_SOURCES)/ft_getlowhex.c \
+					$(DIR_SOURCES)/ft_getnode_var.c \
+					$(DIR_SOURCES)/ft_getnode.c \
 					$(DIR_SOURCES)/ft_getstr.c \
 					$(DIR_SOURCES)/ft_getudec.c \
 					$(DIR_SOURCES)/ft_getupphex.c \
+					$(DIR_SOURCES)/ft_lsttrypush.c \
 					$(DIR_SOURCES)/ft_printf.c \
 					$(DIR_SOURCES)/ft_tohexstr.c \
 					$(DIR_SOURCES)/ft_varstr.c \
