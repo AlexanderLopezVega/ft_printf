@@ -6,7 +6,7 @@
 /*   By: alopez-v <alopez-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:19:51 by alopez-v          #+#    #+#             */
-/*   Updated: 2025/01/22 17:01:03 by alopez-v         ###   ########.fr       */
+/*   Updated: 2025/01/23 14:41:13 by alopez-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,17 @@
 
 # define FORMAT_SPECIFIER_CHAR '%'
 
+size_t	ft_exponentlen(const double num);
+char	*ft_getaddr(const void *addr);
+char	*ft_getchar(const int c);
+char	*ft_getdec(const double dec);
+char	*ft_getint(const int i);
+char	*ft_getlowhex(const unsigned long long i);
+char	*ft_getstr(const char *str);
+char	*ft_getudec(const double dec);
+char	*ft_getupphex(const unsigned long long i);
+size_t	ft_mantissalen(const double num);
 void	ft_printf(const char *format, ...);
-void	ft_variadic(const unsigned int n, ...);
-size_t	ft_count_format_specifiers(const char *str, const char format_specifier);
-
+char	*ft_tohexstr(const unsigned long long num, const char *hex_dic,
+			const size_t digits);
 #endif
