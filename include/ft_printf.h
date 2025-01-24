@@ -6,14 +6,14 @@
 /*   By: alopez-v <alopez-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:19:51 by alopez-v          #+#    #+#             */
-/*   Updated: 2025/01/23 16:46:46 by alopez-v         ###   ########.fr       */
+/*   Updated: 2025/01/24 17:13:07 by alopez-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include "../libft/libft.h"
+# include "libft.h"
 # include <stdarg.h>
 # include <stddef.h>
 

@@ -5,47 +5,49 @@ MAKE				=	make
 
 #	Directories
 DIR_BASE			=	.
-DIR_SOURCES			=	src
-DIR_INCLUDES		=	include
+DIR_SOURCE			=	src
+DIR_INCLUDE			=	include
 DIR_LIBFT			=	libft
-DIR_OBJECTS			=	obj
-DIR_BINARIES		=	$(DIR_BASE)
+DIR_OBJECT			=	obj
+DIR_BINARY			=	$(DIR_BASE)
 
 #	Files
 FILE_SOURCES		=	\
-					$(DIR_SOURCES)/ft_declen.c \
-					$(DIR_SOURCES)/ft_getaddr.c \
-					$(DIR_SOURCES)/ft_getchar.c \
-					$(DIR_SOURCES)/ft_getdec.c \
-					$(DIR_SOURCES)/ft_getint.c \
-					$(DIR_SOURCES)/ft_getlowhex.c \
-					$(DIR_SOURCES)/ft_getnode_var.c \
-					$(DIR_SOURCES)/ft_getnode.c \
-					$(DIR_SOURCES)/ft_getstr.c \
-					$(DIR_SOURCES)/ft_getudec.c \
-					$(DIR_SOURCES)/ft_getupphex.c \
-					$(DIR_SOURCES)/ft_lsttrypush.c \
-					$(DIR_SOURCES)/ft_printf.c \
-					$(DIR_SOURCES)/ft_tohexstr.c \
-					$(DIR_SOURCES)/ft_varstr.c \
+					$(DIR_SOURCE)/ft_declen.c \
+					$(DIR_SOURCE)/ft_getaddr.c \
+					$(DIR_SOURCE)/ft_getchar.c \
+					$(DIR_SOURCE)/ft_getdec.c \
+					$(DIR_SOURCE)/ft_getint.c \
+					$(DIR_SOURCE)/ft_getlowhex.c \
+					$(DIR_SOURCE)/ft_getnode_var.c \
+					$(DIR_SOURCE)/ft_getnode.c \
+					$(DIR_SOURCE)/ft_getstr.c \
+					$(DIR_SOURCE)/ft_getudec.c \
+					$(DIR_SOURCE)/ft_getupphex.c \
+					$(DIR_SOURCE)/ft_lsttrypush.c \
+					$(DIR_SOURCE)/ft_printf.c \
+					$(DIR_SOURCE)/ft_tohexstr.c \
+					$(DIR_SOURCE)/ft_varstr.c \
 
-FILE_OBJECTS		=	$(patsubst $(DIR_SOURCES)/%.c, $(DIR_OBJECTS)/%.o, $(FILE_SOURCES))
+FILES_OBJECTS		=	$(patsubst $(DIR_SOURCE)/%.c, $(DIR_OBJECT)/%.o, $(FILE_SOURCES))
 FILE_LIBFT			=	$(DIR_LIBFT)/libft.a
+FILE_LIBFT_HEADER	=	$(DIR_LIBFT)/libft.h
+FILE_HEADER			=	$(DIR_INCLUDE)/ft_printf.h
 
 #	Targets
 NAME				=	libftprintf.a
-TARGET				=	$(DIR_BINARIES)/$(NAME)
+TARGET				=	$(DIR_BINARY)/$(NAME)
 
-$(TARGET):	$(FILE_OBJECTS) $(FILE_LIBFT) | $(DIR_BINARIES)
-	ar -rcs $(TARGET) $(FILE_OBJECTS) $(FILE_LIBFT)
+$(TARGET):	$(FILES_OBJECTS) $(FILE_LIBFT) | $(DIR_BINARY)
+	ar -rcs $(TARGET) $(FILES_OBJECTS) $(FILE_LIBFT) $(FILE_HEADER) $(FILE_LIBFT_HEADER)
 
-$(DIR_OBJECTS)/%.o: $(DIR_SOURCES)/%.c | $(DIR_OBJECTS)
-	$(CC) $(CFLAGS) -c $< -o $@ -I$(DIR_INCLUDES) -I$(DIR_LIBFT)
+$(DIR_OBJECT)/%.o: $(DIR_SOURCE)/%.c | $(DIR_OBJECT)
+	$(CC) $(CFLAGS) -c $< -o $@ -I$(DIR_INCLUDE) -I$(DIR_LIBFT)
 
-$(DIR_OBJECTS):
+$(DIR_OBJECT):
 	mkdir -p $@
 
-$(DIR_BINARIES):
+$(DIR_BINARY):
 	mkdir -p $@
 
 $(FILE_LIBFT):
@@ -54,10 +56,12 @@ $(FILE_LIBFT):
 all:	$(TARGET)
 
 clean:
-	rm -rf $(FILE_OBJECTS)
+	rm -rf $(FILES_OBJECTS)
+	$(MAKE) -C $(DIR_LIBFT) clean
 
 fclean: clean
 	rm -rf $(TARGET)
+	$(MAKE) -C $(DIR_LIBFT) fclean
 
 re:	fclean all
 
