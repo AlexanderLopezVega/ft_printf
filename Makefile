@@ -46,7 +46,7 @@ $(FILE_LIBFT):
 all:	$(TARGET)
 
 clean:
-	rm -rf $(FILES_OBJECTS)
+	rm -rf $(DIR_OBJECT)
 	$(MAKE) -C $(DIR_LIBFT) clean
 
 fclean: clean
