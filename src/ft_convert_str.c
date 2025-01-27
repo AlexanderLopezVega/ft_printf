@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_getaddr.c                                       :+:      :+:    :+:   */
+/*   ft_convert_str.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alopez-v <alopez-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/23 11:35:17 by alopez-v          #+#    #+#             */
-/*   Updated: 2025/01/23 15:25:05 by alopez-v         ###   ########.fr       */
+/*   Created: 2025/01/27 13:20:51 by alopez-v          #+#    #+#             */
+/*   Updated: 2025/01/27 18:16:50 by alopez-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "libft.h"
-#include <stdlib.h>
 
-char	*ft_getaddr(const void *addr)
+char	*ft_convert_str(const char *str)
 {
-	return (ft_tohexstr((unsigned long long)addr, "0123456789abcdef", 0));
+	return (ft_strdup(str));
 }

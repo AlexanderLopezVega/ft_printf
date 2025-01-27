@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_getint.c                                        :+:      :+:    :+:   */
+/*   ft_convert_int.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alopez-v <alopez-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/23 11:38:45 by alopez-v          #+#    #+#             */
-/*   Updated: 2025/01/23 12:11:33 by alopez-v         ###   ########.fr       */
+/*   Created: 2025/01/27 13:20:34 by alopez-v          #+#    #+#             */
+/*   Updated: 2025/01/27 18:16:46 by alopez-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "libft.h"
 
-char	*ft_getint(const int i)
+char	*ft_convert_int(const int i)
 {
 	return (ft_itoa(i));
 }

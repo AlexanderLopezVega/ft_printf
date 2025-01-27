@@ -12,26 +12,16 @@ DIR_OBJECT			=	obj
 DIR_BINARY			=	$(DIR_BASE)
 
 #	Files
-FILE_SOURCES		=	\
-					$(DIR_SOURCE)/ft_declen.c \
-					$(DIR_SOURCE)/ft_getaddr.c \
-					$(DIR_SOURCE)/ft_getchar.c \
-					$(DIR_SOURCE)/ft_getdec.c \
-					$(DIR_SOURCE)/ft_getint.c \
-					$(DIR_SOURCE)/ft_getlowhex.c \
-					$(DIR_SOURCE)/ft_getnode_var.c \
-					$(DIR_SOURCE)/ft_getnode.c \
-					$(DIR_SOURCE)/ft_getstr.c \
-					$(DIR_SOURCE)/ft_getudec.c \
-					$(DIR_SOURCE)/ft_getupphex.c \
-					$(DIR_SOURCE)/ft_lsttrypush.c \
-					$(DIR_SOURCE)/ft_printf.c \
-					$(DIR_SOURCE)/ft_tohexstr.c \
-					$(DIR_SOURCE)/ft_varstr.c \
-
+FILE_SOURCES		=	$(DIR_SOURCE)/ft_convert_char.c \
+						$(DIR_SOURCE)/ft_convert_dec.c \
+						$(DIR_SOURCE)/ft_convert_hex.c \
+						$(DIR_SOURCE)/ft_convert_int.c \
+						$(DIR_SOURCE)/ft_convert_ptr.c \
+						$(DIR_SOURCE)/ft_convert_str.c \
+						$(DIR_SOURCE)/ft_printf.c \
+						$(DIR_SOURCE)/ft_putarg_fd.c
 FILES_OBJECTS		=	$(patsubst $(DIR_SOURCE)/%.c, $(DIR_OBJECT)/%.o, $(FILE_SOURCES))
 FILE_LIBFT			=	$(DIR_LIBFT)/libft.a
-FILE_LIBFT_HEADER	=	$(DIR_LIBFT)/libft.h
 FILE_HEADER			=	$(DIR_INCLUDE)/ft_printf.h
 
 #	Targets
@@ -39,10 +29,10 @@ NAME				=	libftprintf.a
 TARGET				=	$(DIR_BINARY)/$(NAME)
 
 $(TARGET):	$(FILES_OBJECTS) $(FILE_LIBFT) | $(DIR_BINARY)
-	ar -rcs $(TARGET) $(FILES_OBJECTS) $(FILE_LIBFT) $(FILE_HEADER) $(FILE_LIBFT_HEADER)
+	ar -rcs $@ $^ $(FILE_HEADER)
 
-$(DIR_OBJECT)/%.o: $(DIR_SOURCE)/%.c | $(DIR_OBJECT)
-	$(CC) $(CFLAGS) -c $< -o $@ -I$(DIR_INCLUDE) -I$(DIR_LIBFT)
+$(DIR_OBJECT)/%.o: $(DIR_SOURCE)/%.c $(FILE_LIBFT) $(FILE_LIBFT_INCLUDE) | $(DIR_OBJECT)
+	$(CC) $(CFLAGS) -c $< -o $@ -I $(DIR_INCLUDE) -I $(DIR_LIBFT)
 
 $(DIR_OBJECT):
 	mkdir -p $@

@@ -22,18 +22,11 @@ src/*
 !libft/libft.h
 !libft/Makefile
 
-!src/ft_declen.c
-!src/ft_getaddr.c
-!src/ft_getchar.c
-!src/ft_getdec.c
-!src/ft_getint.c
-!src/ft_getlowhex.c
-!src/ft_getnode_var.c
-!src/ft_getnode.c
-!src/ft_getstr.c
-!src/ft_getudec.c
-!src/ft_getupphex.c
-!src/ft_lsttrypush.c
-!src/ft_printf.c
-!src/ft_tohexstr.c
-!src/ft_varstr.c
+!ft_convert_char.c
+!ft_convert_dec.c
+!ft_convert_hex.c
+!ft_convert_int.c
+!ft_convert_ptr.c
+!ft_convert_str.c
+!ft_printf.c
+!ft_putarg_fd.c

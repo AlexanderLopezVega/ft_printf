@@ -67,11 +67,8 @@ FILES_BONUS_OBJECTS	=	$(patsubst $(DIR_BONUS_SOURCE)/%.c, $(DIR_BONUS_OBJECT)/%.
 # Set targets
 NAME				=	libft.a
 
-$(NAME): $(FILES_OBJECTS)
-	ar -rcs $(NAME) $(FILE_OBJECTS) $(FILE_HEADER)
-
-bonus:	$(FILES_OBJECTS) $(FILES_BONUS_OBJECTS)
-	ar -rcs $(NAME) $(FILES_OBJECTS) $(FILES_BONUS_OBJECTS) $(FILE_HEADER)
+$(NAME): $(FILE_OBJECTS) $(FILE_HEADER)
+	ar -rcs $@ $^
 
 $(DIR_OBJECT)/%.o: $(DIR_SOURCE)/%.c | $(DIR_OBJECT)
 	$(CC) $(CFLAGS) -o $@ -c $< -I $(DIR_HEADER)
@@ -84,6 +81,9 @@ $(DIR_OBJECT):
 
 $(DIR_BONUS_OBJECT):
 	mkdir -p $@
+
+bonus:	$(FILES_OBJECTS) $(FILES_BONUS_OBJECTS)
+	ar -rcs $(NAME) $(FILES_OBJECTS) $(FILES_BONUS_OBJECTS) $(FILE_HEADER)
 
 all: $(NAME)
 
