@@ -6,7 +6,7 @@
 /*   By: alopez-v <alopez-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 13:08:52 by alopez-v          #+#    #+#             */
-/*   Updated: 2025/01/27 18:46:12 by alopez-v         ###   ########.fr       */
+/*   Updated: 2025/01/29 09:48:36 by alopez-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,7 @@ static char	*ft_getarg(const char *format, va_list args)
 		return (ft_convert_str(va_arg(args, char *)));
 	else if (*format == 'p')
 		return (ft_convert_ptr(va_arg(args, void *)));
-	else if (*format == 'd')
-		return (ft_convert_dec(va_arg(args, double)));
-	else if (*format == 'i')
+	else if (*format == 'd' || *format == 'i')
 		return (ft_convert_int(va_arg(args, int)));
 	else if (*format == 'u')
 		return (ft_convert_dec(va_arg(args, double)));

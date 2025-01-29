@@ -13,13 +13,13 @@ DIR_BINARY			=	$(DIR_BASE)
 
 #	Files
 FILE_SOURCES		=	$(DIR_SOURCE)/ft_convert_char.c \
-						$(DIR_SOURCE)/ft_convert_dec.c \
 						$(DIR_SOURCE)/ft_convert_hex.c \
 						$(DIR_SOURCE)/ft_convert_int.c \
 						$(DIR_SOURCE)/ft_convert_ptr.c \
 						$(DIR_SOURCE)/ft_convert_str.c \
 						$(DIR_SOURCE)/ft_printf.c \
 						$(DIR_SOURCE)/ft_putarg_fd.c
+#						$(DIR_SOURCE)/ft_convert_dec.c
 FILES_OBJECTS		=	$(patsubst $(DIR_SOURCE)/%.c, $(DIR_OBJECT)/%.o, $(FILE_SOURCES))
 FILE_LIBFT			=	$(DIR_LIBFT)/libft.a
 FILE_HEADER			=	$(DIR_INCLUDE)/ft_printf.h
@@ -29,7 +29,8 @@ NAME				=	libftprintf.a
 TARGET				=	$(DIR_BINARY)/$(NAME)
 
 $(TARGET):	$(FILES_OBJECTS) $(FILE_LIBFT) | $(DIR_BINARY)
-	ar -rcs $@ $^ $(FILE_HEADER)
+	cp $(FILE_LIBFT) $(TARGET)
+	ar -rcs $@ $< $(FILE_HEADER)
 
 $(DIR_OBJECT)/%.o: $(DIR_SOURCE)/%.c $(FILE_LIBFT) $(FILE_LIBFT_INCLUDE) | $(DIR_OBJECT)
 	$(CC) $(CFLAGS) -c $< -o $@ -I $(DIR_INCLUDE) -I $(DIR_LIBFT)

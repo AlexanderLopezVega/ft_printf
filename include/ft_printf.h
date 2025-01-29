@@ -6,7 +6,7 @@
 /*   By: alopez-v <alopez-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:19:51 by alopez-v          #+#    #+#             */
-/*   Updated: 2025/01/27 18:39:49 by alopez-v         ###   ########.fr       */
+/*   Updated: 2025/01/29 10:04:19 by alopez-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define FORMAT_SPECIFIER_CHAR '%'
 
 char	*ft_convert_char(const char c);
-char	*ft_convert_dec(const double d);
+char	*ft_convert_dec(const int d);
 char	*ft_convert_hex(const unsigned long ul, const char *alphabet);
 char	*ft_convert_hex_low(const unsigned long ul);
 char	*ft_convert_hex_upp(const unsigned long ul);
